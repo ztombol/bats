@@ -2,19 +2,19 @@
 
 load test_helper
 
-@test 'flunk() returns 1' {
-  run flunk ''
+@test 'fail() returns 1' {
+  run fail ''
   [ "$status" -eq 1 ]
 }
 
-@test 'flunk() prints positional parameters' {
-  run flunk 'message'
+@test 'fail() prints positional parameters' {
+  run fail 'message'
   [ "$status" -eq 1 ]
   [ "$output" == 'message' ]
 }
 
-@test 'flunk() prints STDIN if no positional parameters are specified' {
-  run bash -c "source '${BATS_LIB}/batslib.bash'; echo 'message' | flunk"
+@test 'fail() prints STDIN if no positional parameters are specified' {
+  run bash -c "source '${BATS_LIB}/batslib.bash'; echo 'message' | fail"
   [ "$status" -eq 1 ]
   [ "$output" == 'message' ]
 }
