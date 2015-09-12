@@ -11,9 +11,9 @@ load test_helper
   run batslib_print_kv_single_or_multi 5 "${pairs[@]}"
   [ "$status" -eq 0 ]
   [ "${#lines[@]}" == '3' ]
-  [ "${lines[0]}" == 'k _1  : v 1' ]
-  [ "${lines[1]}" == 'k 2   : v 2' ]
-  [ "${lines[2]}" == 'k __3 : v 3' ]
+  [ "${lines[0]}" == $'k _1  : $\'v 1\'' ]
+  [ "${lines[1]}" == $'k 2   : $\'v 2\'' ]
+  [ "${lines[2]}" == $'k __3 : $\'v 3\'' ]
 }
 
 @test 'batslib_print_kv_single_or_multi() prints in multi-line format if a at least one value is longer than one line' {

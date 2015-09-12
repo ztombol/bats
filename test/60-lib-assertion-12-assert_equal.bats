@@ -13,8 +13,8 @@ load test_helper
   [ "$status" -eq 1 ]
   [ "${#lines[@]}" -eq 4 ]
   [ "${lines[0]}" == '-- values do not equal --' ]
-  [ "${lines[1]}" == 'expected : a' ]
-  [ "${lines[2]}" == 'actual   : b' ]
+  [ "${lines[1]}" == $'expected : $\'a\'' ]
+  [ "${lines[2]}" == $'actual   : $\'b\'' ]
   [ "${lines[3]}" == '--' ]
 }
 

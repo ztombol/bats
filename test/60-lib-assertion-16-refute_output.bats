@@ -22,7 +22,7 @@ load test_helper
   [ "$status" -eq 1 ]
   [ "${#lines[@]}" -eq 3 ]
   [ "${lines[0]}" == '-- output equals, but it was expected to differ --' ]
-  [ "${lines[1]}" == 'output : a' ]
+  [ "${lines[1]}" == $'output : $\'a\'' ]
   [ "${lines[2]}" == '--' ]
 }
 
@@ -67,8 +67,8 @@ load test_helper
   [ "$status" -eq 1 ]
   [ "${#lines[@]}" -eq 4 ]
   [ "${lines[0]}" == '-- output should not contain substring --' ]
-  [ "${lines[1]}" == 'substring : a' ]
-  [ "${lines[2]}" == 'output    : a' ]
+  [ "${lines[1]}" == $'substring : $\'a\'' ]
+  [ "${lines[2]}" == $'output    : $\'a\'' ]
   [ "${lines[3]}" == '--' ]
 }
 
@@ -101,8 +101,8 @@ load test_helper
   [ "$status" -eq 1 ]
   [ "${#lines[@]}" -eq 4 ]
   [ "${lines[0]}" == '-- regular expression should not match output --' ]
-  [ "${lines[1]}" == 'regex  : .*a.*' ]
-  [ "${lines[2]}" == 'output : a' ]
+  [ "${lines[1]}" == $'regex  : $\'.*a.*\'' ]
+  [ "${lines[2]}" == $'output : $\'a\'' ]
   [ "${lines[3]}" == '--' ]
 }
 
@@ -141,7 +141,7 @@ load test_helper
   [ "${#lines[@]}" -eq 4 ]
   [ "${lines[0]}" == '-- line should differ --' ]
   [ "${lines[1]}" == 'index      : 1' ]
-  [ "${lines[2]}" == 'unexpected : b' ]
+  [ "${lines[2]}" == $'unexpected : $\'b\'' ]
   [ "${lines[3]}" == '--' ]
 }
 
@@ -177,8 +177,8 @@ load test_helper
   [ "${#lines[@]}" -eq 5 ]
   [ "${lines[0]}" == '-- line should not contain substring --' ]
   [ "${lines[1]}" == 'index     : 1' ]
-  [ "${lines[2]}" == 'substring : b' ]
-  [ "${lines[3]}" == 'line      : abc' ]
+  [ "${lines[2]}" == $'substring : $\'b\'' ]
+  [ "${lines[3]}" == $'line      : $\'abc\'' ]
   [ "${lines[4]}" == '--' ]
 }
 
@@ -198,8 +198,8 @@ load test_helper
   [ "${#lines[@]}" -eq 5 ]
   [ "${lines[0]}" == '-- regular expression should not match line --' ]
   [ "${lines[1]}" == 'index : 1' ]
-  [ "${lines[2]}" == 'regex : .*b.*' ]
-  [ "${lines[3]}" == 'line  : abc' ]
+  [ "${lines[2]}" == $'regex : $\'.*b.*\'' ]
+  [ "${lines[3]}" == $'line  : $\'abc\'' ]
   [ "${lines[4]}" == '--' ]
 }
 
@@ -223,9 +223,9 @@ load test_helper
   [ "$status" -eq 1 ]
   [ "${#lines[@]}" -eq 5 ]
   [ "${lines[0]}" == '-- line should not be in output --' ]
-  [ "${lines[1]}" == 'line   : a' ]
+  [ "${lines[1]}" == $'line   : $\'a\'' ]
   [ "${lines[2]}" == 'index  : 0' ]
-  [ "${lines[3]}" == 'output : a' ]
+  [ "${lines[3]}" == $'output : $\'a\'' ]
   [ "${lines[4]}" == '--' ]
 }
 
@@ -235,7 +235,7 @@ load test_helper
   [ "$status" -eq 1 ]
   [ "${#lines[@]}" -eq 8 ]
   [ "${lines[0]}" == '-- line should not be in output --' ]
-  [ "${lines[1]}" == 'line  : b' ]
+  [ "${lines[1]}" == $'line  : $\'b\'' ]
   [ "${lines[2]}" == 'index : 1' ]
   [ "${lines[3]}" == 'output (3 lines):' ]
   [ "${lines[4]}" == '  a' ]
@@ -265,9 +265,9 @@ load test_helper
   [ "$status" -eq 1 ]
   [ "${#lines[@]}" -eq 5 ]
   [ "${lines[0]}" == '-- no line should contain substring --' ]
-  [ "${lines[1]}" == 'substring : a' ]
+  [ "${lines[1]}" == $'substring : $\'a\'' ]
   [ "${lines[2]}" == 'index     : 0' ]
-  [ "${lines[3]}" == 'output    : a' ]
+  [ "${lines[3]}" == $'output    : $\'a\'' ]
   [ "${lines[4]}" == '--' ]
 }
 
@@ -277,7 +277,7 @@ load test_helper
   [ "$status" -eq 1 ]
   [ "${#lines[@]}" -eq 8 ]
   [ "${lines[0]}" == '-- no line should contain substring --' ]
-  [ "${lines[1]}" == 'substring : b' ]
+  [ "${lines[1]}" == $'substring : $\'b\'' ]
   [ "${lines[2]}" == 'index     : 1' ]
   [ "${lines[3]}" == 'output (3 lines):' ]
   [ "${lines[4]}" == '  a' ]
@@ -301,9 +301,9 @@ load test_helper
   [ "$status" -eq 1 ]
   [ "${#lines[@]}" -eq 5 ]
   [ "${lines[0]}" == '-- no line should match the regular expression --' ]
-  [ "${lines[1]}" == 'regex  : .*a.*' ]
+  [ "${lines[1]}" == $'regex  : $\'.*a.*\'' ]
   [ "${lines[2]}" == 'index  : 0' ]
-  [ "${lines[3]}" == 'output : a' ]
+  [ "${lines[3]}" == $'output : $\'a\'' ]
   [ "${lines[4]}" == '--' ]
 }
 
@@ -313,7 +313,7 @@ load test_helper
   [ "$status" -eq 1 ]
   [ "${#lines[@]}" -eq 8 ]
   [ "${lines[0]}" == '-- no line should match the regular expression --' ]
-  [ "${lines[1]}" == 'regex : .*b.*' ]
+  [ "${lines[1]}" == $'regex : $\'.*b.*\'' ]
   [ "${lines[2]}" == 'index : 1' ]
   [ "${lines[3]}" == 'output (3 lines):' ]
   [ "${lines[4]}" == '  a' ]
