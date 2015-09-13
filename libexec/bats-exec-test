@@ -55,6 +55,7 @@ run() {
   set +e
   set +E
   set +T
+  cmd="$@"
   output="$("$@" 2>&1)"
   status="$?"
   oldIFS=$IFS

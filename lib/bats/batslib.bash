@@ -291,6 +291,7 @@ assert_output() {
     else
       if [[ $output != "$expected" ]]; then
         batslib_print_kv_single_or_multi 8 \
+            'command' "$cmd" \
             'expected' "$expected" \
             'actual'   "$output" \
           | batslib_decorate 'output differs' \
