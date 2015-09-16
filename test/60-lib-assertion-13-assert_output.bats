@@ -20,39 +20,45 @@ load test_helper
   run echo 'b'
   run assert_output 'a'
   [ "$status" -eq 1 ]
-  [ "${#lines[@]}" -eq 4 ]
+  [ "${#lines[@]}" -eq 5 ]
   [ "${lines[0]}" == '-- output differs --' ]
-  [ "${lines[1]}" == 'expected : a' ]
-  [ "${lines[2]}" == 'actual   : b' ]
-  [ "${lines[3]}" == '--' ]
+  [ "${lines[1]}" == 'command  : assert_output a' ]
+  [ "${lines[2]}" == 'expected : a' ]
+  [ "${lines[3]}" == 'actual   : b' ]
+  [ "${lines[4]}" == '--' ]
 }
 
 @test "assert_output() <expected>: displays details in multi-line format if \`\$output' is longer than one line" {
   run echo $'b 0\nb 1'
   run assert_output 'a'
   [ "$status" -eq 1 ]
-  [ "${#lines[@]}" -eq 7 ]
+  [ "${#lines[@]}" -eq 9 ]
   [ "${lines[0]}" == '-- output differs --' ]
-  [ "${lines[1]}" == 'expected (1 lines):' ]
-  [ "${lines[2]}" == '  a' ]
-  [ "${lines[3]}" == 'actual (2 lines):' ]
-  [ "${lines[4]}" == '  b 0' ]
-  [ "${lines[5]}" == '  b 1' ]
-  [ "${lines[6]}" == '--' ]
+  [ "${lines[1]}" == 'command (1 lines):' ]
+  [ "${lines[2]}" == '  assert_output a' ]
+  [ "${lines[3]}" == 'expected (1 lines):' ]
+  [ "${lines[4]}" == '  a' ]
+  [ "${lines[5]}" == 'actual (2 lines):' ]
+  [ "${lines[6]}" == '  b 0' ]
+  [ "${lines[7]}" == '  b 1' ]
+  [ "${lines[8]}" == '--' ]
 }
 
 @test "assert_output() <expected>: displays details in multi-line format if <expected> is longer than one line" {
   run echo 'b'
   run assert_output $'a 0\na 1'
   [ "$status" -eq 1 ]
-  [ "${#lines[@]}" -eq 7 ]
+  [ "${#lines[@]}" -eq 10 ]
   [ "${lines[0]}" == '-- output differs --' ]
-  [ "${lines[1]}" == 'expected (2 lines):' ]
-  [ "${lines[2]}" == '  a 0' ]
+  [ "${lines[1]}" == 'command (2 lines):' ] || (echo "$output"; false)
+  [ "${lines[2]}" == '  assert_output a 0' ]
   [ "${lines[3]}" == '  a 1' ]
-  [ "${lines[4]}" == 'actual (1 lines):' ]
-  [ "${lines[5]}" == '  b' ]
-  [ "${lines[6]}" == '--' ]
+  [ "${lines[4]}" == 'expected (2 lines):' ]
+  [ "${lines[5]}" == '  a 0' ]
+  [ "${lines[6]}" == '  a 1' ]
+  [ "${lines[7]}" == 'actual (1 lines):' ]
+  [ "${lines[8]}" == '  b' ]
+  [ "${lines[9]}" == '--' ]
 }
 
 @test 'assert_output() <expected>: performs literal matching by default' {
