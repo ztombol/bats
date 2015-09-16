@@ -14,9 +14,9 @@ load test_helper
   [ "$status" -eq 1 ]
   [ "${#lines[@]}" -eq 5 ]
   [ "${lines[0]}" == '-- assertion failed --' ]
-  [ "${lines[1]}" == 'expression : false' ]
+  [ "${lines[1]}" == $'expression : $\'false\'' ]
   [ "${lines[2]}" == 'status     : 1' ]
-  [ "${lines[3]}" == 'output     : error' ]
+  [ "${lines[3]}" == $'output     : $\'error\'' ]
   [ "${lines[4]}" == '--' ]
 }
 
@@ -26,7 +26,7 @@ load test_helper
   [ "$status" -eq 1 ]
   [ "${#lines[@]}" -eq 7 ]
   [ "${lines[0]}" == '-- assertion failed --' ]
-  [ "${lines[1]}" == 'expression : false' ]
+  [ "${lines[1]}" == $'expression : $\'false\'' ]
   [ "${lines[2]}" == 'status     : 1' ]
   [ "${lines[3]}" == 'output (2 lines):' ]
   [ "${lines[4]}" == '  0. error' ]

@@ -16,7 +16,7 @@ load test_helper
   [ "${#lines[@]}" -eq 4 ]
   [ "${lines[0]}" == '-- command failed --' ]
   [ "${lines[1]}" == 'status : 1' ]
-  [ "${lines[2]}" == 'output : error' ]
+  [ "${lines[2]}" == $'output : $\'error\'' ]
   [ "${lines[3]}" == '--' ]
 }
 

@@ -113,7 +113,9 @@ batslib_get_max_single_line_key_width() {
 batslib_print_kv_single() {
   local -ir col_width="$1"; shift
   while (( $# != 0 )); do
-    printf '%-*s : %s\n' "$col_width" "$1" "$2"
+    local value="$2"
+    [ "$1" != "index" ] && [ "$1" != "status" ] && value="$(string_repr $2)"
+    printf '%-*s : %s\n' "$col_width" "$1" "$value"
     shift 2
   done
 }
@@ -253,4 +255,22 @@ batslib_decorate() {
   cat -
   echo '--'
   echo
+}
+
+# Produce a literal representation of a string which displays blank and 
+# control characters as their quoted representation.
+#
+# Globals:
+#   none
+# Arguments:
+#   $* - text
+# Returns:
+#   none
+# Outputs:
+#   STDOUT - quoted text displayed as the ANSI-C Quoted syntax
+string_repr() {
+  var="$*"
+  printf -v var '%q' "$var"$'\n'   # Add a newline (to force the ANSI-C Quoted syntax)
+  [[ $var =~ \$\'(.*)\\n\' ]] && var="\$'${BASH_REMATCH[1]}'"
+  echo "$var"
 }

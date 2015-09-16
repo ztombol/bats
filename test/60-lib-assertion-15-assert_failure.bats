@@ -15,7 +15,7 @@ load test_helper
   [ "$status" -eq 1 ]
   [ "${#lines[@]}" -eq 3 ]
   [ "${lines[0]}" == '-- command succeeded, but it was expected to fail --' ]
-  [ "${lines[1]}" == 'output : ok' ]
+  [ "${lines[1]}" == $'output : $\'ok\'' ]
   [ "${lines[2]}" == '--' ]
 }
 
@@ -44,9 +44,9 @@ load test_helper
   [ "$status" -eq 1 ]
   [ "${#lines[@]}" -eq 5 ]
   [ "${lines[0]}" == '-- command failed as expected, but status differs --' ]
-  [ "${lines[1]}" == 'expected : 2' ]
-  [ "${lines[2]}" == 'actual   : 1' ]
-  [ "${lines[3]}" == 'output   : error' ]
+  [ "${lines[1]}" == $'expected : $\'2\'' ]
+  [ "${lines[2]}" == $'actual   : $\'1\'' ]
+  [ "${lines[3]}" == $'output   : $\'error\'' ]
   [ "${lines[4]}" == '--' ]
 }
 
@@ -56,8 +56,8 @@ load test_helper
   [ "$status" -eq 1 ]
   [ "${#lines[@]}" -eq 7 ]
   [ "${lines[0]}" == '-- command failed as expected, but status differs --' ]
-  [ "${lines[1]}" == 'expected : 2' ]
-  [ "${lines[2]}" == 'actual   : 1' ]
+  [ "${lines[1]}" == $'expected : $\'2\'' ]
+  [ "${lines[2]}" == $'actual   : $\'1\'' ]
   [ "${lines[3]}" == 'output (2 lines):' ]
   [ "${lines[4]}" == '  error 1' ]
   [ "${lines[5]}" == '  error 2' ]
